@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button>Find my beer!</button>
+    <button>🍺 Show me the beers!</button>
   </div>
 </template>
 
@@ -13,4 +13,13 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+button {
+  cursor: pointer;
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: rgba(212, 195, 157, 0.719);
+  margin: 20px;
+}
+</style>

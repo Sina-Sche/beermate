@@ -32,4 +32,12 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+table,
+th,
+td {
+  padding: 5px;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>

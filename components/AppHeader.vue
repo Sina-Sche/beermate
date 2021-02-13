@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Welcome to Beermate!</h1>
-    <p>The App to find your perfect beer</p>
+    <p>Find the perfect beer for you</p>
   </div>
 </template>
 
