@@ -4,7 +4,7 @@
       <label>Type the ABV value</label>
       <input v-model="abv" placeholder="e.g. 6.5%" type="number" />
     </div>
-    <button type="submit" @click="submitForm(abv)">
+    <button type="submit" @click.prevent="submitForm(abv)">
       🍺 Show me the beers!
     </button>
   </form>
@@ -16,6 +16,11 @@ export default {
   emits: ['getBeers'],
   data() {
     return { abv: Number }
+  },
+  methods: {
+    submitForm(abv) {
+      this.$emit('getBeers', abv)
+    },
   },
 }
 </script>
