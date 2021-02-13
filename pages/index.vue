@@ -1,12 +1,33 @@
 <template>
-  <div>
-    <h1>Welcome to Beermate!</h1>
-    <p>Find your perfect beer</p>
+  <div class="app-container">
+    <AppHeader />
+    <InputField />
+    <Button />
+    <ResultsTable />
   </div>
 </template>
 
 <script>
-export default {}
+import AppHeader from '../components/AppHeader'
+import InputField from '../components/InputField'
+import Button from '../components/Button'
+import ResultsTable from '../components/ResultsTable'
+export default {
+  components: { AppHeader, InputField, Button, ResultsTable },
+}
 </script>
 
-<style></style>
+<style>
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>
