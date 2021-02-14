@@ -9,3 +9,13 @@ export async function getBeersByABV(abv) {
     return error
   }
 }
+
+export async function getRandomBeer() {
+  try {
+    const response = await fetch('https://api.punkapi.com/v2/beers/random')
+    const beer = response.json()
+    return beer
+  } catch (error) {
+    return error
+  }
+}
