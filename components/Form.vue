@@ -2,8 +2,9 @@
   <form>
     <div>
       <label>Type the ABV value</label>
-      <input v-model="abv" placeholder="e.g. 6.5%" type="number" />
+      <input v-model="abv" placeholder="e.g. 6.5%" type="number" required />
     </div>
+    <p v-if="error.length > 0" class="error">{{ error }}</p>
     <button type="submit" @click.prevent="submitForm(abv)">
       🍺 Show me the beers!
     </button>
@@ -15,11 +16,15 @@ export default {
   name: '',
   emits: ['getBeers'],
   data() {
-    return { abv: Number }
+    return { abv: Number, error: '' }
   },
   methods: {
     submitForm(abv) {
-      this.$emit('getBeers', abv)
+      if (abv > 0) {
+        this.$emit('getBeers', abv)
+      } else {
+        this.error = 'Please enter an ABV value.'
+      }
     },
   },
 }
@@ -41,5 +46,9 @@ button {
   border-radius: 20px;
   background-color: rgba(212, 195, 157, 0.719);
   margin: 20px;
+}
+.error {
+  color: red;
+  text-align: center;
 }
 </style>

@@ -4,6 +4,7 @@
       <AppHeader />
       <Form v-if="beers.length === 0" @getBeers="getBeersByABV" />
       <div v-else>
+        <button @click.prevent="handleReturnClick">◀ Go back</button>
         <h5>
           {{ ` Results for beers with an ABV below ${abv}%. ` }}
         </h5>
@@ -25,14 +26,13 @@ export default {
       beers: [],
     }
   },
-  computed() {
-    const abv = this.abv
-    return abv
-  },
   methods: {
     async getBeersByABV(abv) {
       this.abv = abv
       this.beers = await getBeersByABV(abv)
+    },
+    handleReturnClick() {
+      this.beers = []
     },
   },
 }
