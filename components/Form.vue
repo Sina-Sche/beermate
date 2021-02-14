@@ -1,7 +1,7 @@
 <template>
   <form>
     <div>
-      <label>Type the ABV value</label>
+      <label>Enter maximum ABV value</label>
       <input v-model="abv" placeholder="e.g. 6.5%" type="number" required />
     </div>
     <p v-if="error.length > 0" class="error">{{ error }}</p>

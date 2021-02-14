@@ -7,7 +7,7 @@
 
 <style scoped>
 h1 {
-  color: white;
+  color: black;
 }
 p {
   color: rgb(48, 46, 46);

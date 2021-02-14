@@ -2,6 +2,8 @@
   <div class="app-container">
     <div class="content">
       <AppHeader />
+      <h5 @click="toggleAbout">About the App</h5>
+      <About v-if="seen" @toggleAbout="toggleAbout" />
       <Form v-if="beers.length === 0" @getBeers="getBeersByABV" />
       <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
       <div v-else-if="beers.length > 0">
@@ -17,16 +19,18 @@
 
 <script>
 import AppHeader from '../components/AppHeader'
+import About from '../components/About'
 import Form from '../components/Form'
 import ResultsTable from '../components/ResultsTable'
 import { getBeersByABV } from '../middleware/beers'
 export default {
-  components: { AppHeader, Form, ResultsTable },
+  components: { AppHeader, About, Form, ResultsTable },
   data() {
     return {
       beers: [],
       errorMessage: '',
       abv: Number,
+      seen: false,
     }
   },
   methods: {
@@ -42,6 +46,9 @@ export default {
     },
     handleReturnClick() {
       this.beers = []
+    },
+    toggleAbout() {
+      this.seen = !this.seen
     },
   },
 }
@@ -64,11 +71,13 @@ export default {
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
+  color: whitesmoke;
 }
 .content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 60vw;
   position: relative;
   backdrop-filter: blur(15px);
   background-color: rgba(237, 248, 133, 0.062);
@@ -79,5 +88,6 @@ export default {
 h5 {
   text-align: center;
   margin: 10px;
+  cursor: pointer;
 }
 </style>
