@@ -18,9 +18,8 @@
 <script>
 export default {
   name: 'ResultsTable',
-  props: { beers: { type: Array, default: () => [] } },
-  data() {
-    return {}
+  props: {
+    beers: { type: Array, default: () => [] },
   },
 }
 </script>

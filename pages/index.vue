@@ -2,8 +2,13 @@
   <div class="app-container">
     <div class="content">
       <AppHeader />
-      <Form @getBeers="getBeersByABV" />
-      <ResultsTable :beers="beers" />
+      <Form v-if="beers.length === 0" @getBeers="getBeersByABV" />
+      <div v-else>
+        <h5>
+          {{ ` Results for beers with an ABV below ${abv}%. ` }}
+        </h5>
+        <ResultsTable :beers="beers" />
+      </div>
     </div>
   </div>
 </template>
@@ -20,10 +25,14 @@ export default {
       beers: [],
     }
   },
+  computed() {
+    const abv = this.abv
+    return abv
+  },
   methods: {
     async getBeersByABV(abv) {
+      this.abv = abv
       this.beers = await getBeersByABV(abv)
-      return this.beers
     },
   },
 }
@@ -54,8 +63,12 @@ export default {
   position: relative;
   backdrop-filter: blur(15px);
   background-color: rgba(237, 248, 133, 0.062);
-  padding: 50px;
+  padding: 30px 50px;
   border-radius: 30px;
-  margin: 50px auto 30px;
+  margin: 30px auto 30px;
+}
+h5 {
+  text-align: center;
+  margin: 10px;
 }
 </style>
