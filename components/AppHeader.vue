@@ -1,17 +1,17 @@
 <template>
   <div>
     <h1>Welcome to Beermate!</h1>
-    <p>Find the perfect beer for you</p>
+    <p>~ Find your perfect beer ~</p>
   </div>
 </template>
 
-<script>
-export default {
-  name: '',
-  data() {
-    return {}
-  },
+<style scoped>
+h1 {
+  color: white;
 }
-</script>
-
-<style></style>
+p {
+  color: rgb(48, 46, 46);
+  text-align: center;
+  margin-bottom: 15px;
+}
+</style>

@@ -2,20 +2,39 @@
   <div class="app-container">
     <div class="content">
       <AppHeader />
-      <InputField />
-      <Button />
-      <ResultsTable />
+      <Form v-if="beers.length === 0" @getBeers="getBeersByABV" />
+      <div v-else>
+        <button @click.prevent="handleReturnClick">◀ Go back</button>
+        <h5>
+          {{ ` Results for beers with an ABV below ${abv}%. ` }}
+        </h5>
+        <ResultsTable :beers="beers" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import AppHeader from '../components/AppHeader'
-import InputField from '../components/InputField'
-import Button from '../components/Button'
+import Form from '../components/Form'
 import ResultsTable from '../components/ResultsTable'
+import { getBeersByABV } from '../middleware/beers'
 export default {
-  components: { AppHeader, InputField, Button, ResultsTable },
+  components: { AppHeader, Form, ResultsTable },
+  data() {
+    return {
+      beers: [],
+    }
+  },
+  methods: {
+    async getBeersByABV(abv) {
+      this.abv = abv
+      this.beers = await getBeersByABV(abv)
+    },
+    handleReturnClick() {
+      this.beers = []
+    },
+  },
 }
 </script>
 
@@ -27,13 +46,15 @@ export default {
   margin: 0;
 }
 .app-container {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
   background-image: url(https://images.unsplash.com/photo-1595600566063-2863388012be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+  background-attachment: fixed;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 .content {
   display: flex;
@@ -42,7 +63,12 @@ export default {
   position: relative;
   backdrop-filter: blur(15px);
   background-color: rgba(237, 248, 133, 0.062);
-  padding: 50px;
+  padding: 30px 50px;
   border-radius: 30px;
+  margin: 30px auto 30px;
+}
+h5 {
+  text-align: center;
+  margin: 10px;
 }
 </style>
