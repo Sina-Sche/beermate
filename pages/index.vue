@@ -3,10 +3,11 @@
     <div class="content">
       <AppHeader />
       <Form v-if="beers.length === 0" @getBeers="getBeersByABV" />
-      <div v-else>
+      <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
+      <div v-else-if="beers.length > 0">
         <button @click.prevent="handleReturnClick">◀ Go back</button>
         <h5>
-          {{ ` Results for beers with an ABV below ${abv}%. ` }}
+          {{ ` ${beers.length} results for beers with an ABV below ${abv}%. ` }}
         </h5>
         <ResultsTable :beers="beers" />
       </div>
@@ -24,12 +25,20 @@ export default {
   data() {
     return {
       beers: [],
+      errorMessage: '',
+      abv: Number,
     }
   },
   methods: {
     async getBeersByABV(abv) {
       this.abv = abv
-      this.beers = await getBeersByABV(abv)
+      const data = await getBeersByABV(abv)
+      if (data.length === 0) {
+        this.errorMessage = `We could not find any beers with an ABV below ${abv}`
+      } else {
+        this.errorMessage = ''
+        this.beers = data
+      }
     },
     handleReturnClick() {
       this.beers = []

@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     submitForm(abv) {
-      if (abv > 0) {
+      if (abv >= 0) {
         this.$emit('getBeers', abv)
       } else {
         this.error = 'Please enter an ABV value.'
