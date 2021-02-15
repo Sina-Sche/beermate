@@ -1,5 +1,14 @@
 # beermate
 
+##Coding Challenge
+This repository was created using Nuxt.js as part of an interview coding challenge. As this is my very first project with Nuxt.js and only the 2nd project using Vue, I decided to focus on learning about the benefits of using Nuxt.js over Vue.
+
+##The task
+Build a simple beer app, that uses the [Punk API](https://punkapi.com/documentation/v2). The user should be able to enter his preferred maximum ABV(alcohol by volume) value into an input field and should receive a table of all beers with an ABV less than the given one. The user should only see the input form when there is no results table. And the table should only be displayed if there are actually results for the request.
+
+##Add On's
+
+
 ## Build Setup
 
 ```bash
