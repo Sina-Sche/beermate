@@ -56,6 +56,9 @@ a {
   width: fit-content;
   color: whitesmoke;
 }
+p {
+  color: black;
+}
 button {
   margin-top: 10px;
   width: 50%;
